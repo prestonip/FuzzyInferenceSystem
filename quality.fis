@@ -1,0 +1,43 @@
+[System]
+Name='quality'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='ratio'
+Range=[0 1]
+NumMFs=3
+MF1='low':'linzmf',[0.287745604963806 0.700361944157187]
+MF2='med':'trimf',[0.0974829069286452 0.517269906928645 0.930819906928645]
+MF3='high':'linsmf',[0.462068965517241 0.736568965517241]
+
+[Input2]
+Name='score'
+Range=[0 1]
+NumMFs=3
+MF1='bad':'gbellmf',[0.624384236453202 5.80607468660005 -0.00413650465356775]
+MF2='good':'pimf',[-0.0524819027921406 0.6083 0.6288 1.01]
+MF3='great':'linsmf',[0.499626933467821 0.699626933467821]
+
+[Output1]
+Name='quality'
+Range=[0 1]
+NumMFs=3
+MF1='poor':'pimf',[-0.375 -0.04167 0.21551724137931 0.494663382594417]
+MF2='avg':'pimf',[0.0675287356321839 0.400828735632184 0.484228735632184 1.03653530377668]
+MF3='excellent':'pimf',[0.462963128053347 0.796263128053347 1.01735557468717 1.21296312805335]
+
+[Rules]
+1 1, 1 (0.6) : 2
+3 3, 3 (1) : 1
+2 3, 2 (0.3) : 1
+3 1, 3 (0.5) : 1
+3 2, 3 (1) : 1
